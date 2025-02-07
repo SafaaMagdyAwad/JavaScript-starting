@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <input type="text" class="input"/>
+            <input type="submit" class="add" value="Add Task"/>
+        </div>
+        <div class="tasks"></div>
+    </div>
+    <script>
+        let input=document.querySelector(".input");
+        let add=document.querySelector(".add");
+        let tasks=document.querySelector(".tasks");
+        
+        let i=0;
+        
+        add.onclick=function(){
+            let myText=document.createTextNode(input.value);
+            let buttext=document.createTextNode("Delete");
+            let myparagraph=document.createElement("p");
+            let mydiv=document.createElement("div");
+            let myButton=document.createElement("button");
+            window.localStorage.setItem("input"+i++,input.value);
+            tasks.appendChild(mydiv);
+            mydiv.appendChild(myparagraph);
+            myparagraph.appendChild(myText);
+            mydiv.appendChild(myButton);
+            myButton.appendChild(buttext);
+            myButton.onclick=function(){
+                    window.localStorage.removeItem("input"+i);
+                }
+        }
+        if(window.localStorage){
+            // console.log("has local storage");
+            for(let j=0;j<=window.localStorage.length-1 ;j++){
+                let myText=document.createTextNode(window.localStorage.getItem("input"+j));
+                let buttext=document.createTextNode("Delete");
+                let myparagraph=document.createElement("p");
+                let mydiv=document.createElement("div");
+                let myButton=document.createElement("button");
+                tasks.appendChild(mydiv);
+                mydiv.appendChild(myparagraph);
+                myparagraph.appendChild(myText);
+                mydiv.appendChild(myButton);
+                myButton.appendChild(buttext);
+                myButton.onclick=function(){
+                    window.localStorage.removeItem("input"+j);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

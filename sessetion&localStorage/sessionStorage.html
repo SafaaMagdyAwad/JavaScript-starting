@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label>name</label>
+            <input type="text" name="name" id="name" />
+            <label>text</label>
+            <input type="text" name="text" id="text"/>
+            <input type="button" class="submit"/>
+        </form>
+    </div>
+    <script>
+        let name=document.getElementById("name");
+        let text=document.getElementById("text");
+        let button =document.querySelector(".submit");
+        // console.log(name.id);
+        name.onblur=function(){
+            window.sessionStorage.setItem("name",name.value);
+        }
+        text.onblur=function(){
+            window.sessionStorage.setItem("text",text.value);
+        }
+        name.value=window.sessionStorage.getItem("name");
+        text.value=window.sessionStorage.getItem("text");
+
+        button.onclick=function(){
+            window.sessionStorage.clear();
+        }
+        // console.log(window.sessionStorage.getItem("text"));
+    </script>
+</body>
+</html>
